@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracy Asiamah - Data Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tracy Asiamah</h1>
+            <p class="subtitle">Financial Economics Student I Data Analyst I Clarity Through Data</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="about-section">
+            <h2>About</h2>
+            <div class="about-wrapper">
+                <div class="about-image" id="profileImageContainer">
+                    <input type="file" id="profileImageInput" accept="image/*" style="display: none;">
+                    <div class="image-placeholder" id="imagePlaceholder">
+                        <span>📷</span>
+                        <p>Click to add your photo</p>
+                    </div>
+                    <img src="" alt="Profile picture" id="profileImage" style="display: none;">
+                </div>
+                <div class="about-content">
+                    <p>Hi, I'm Tracy Asiamah, a Financial Economics student at Kingston University with a growing passion for understanding the stories behind data. I realised early on that pure finance felt too broad, but working with data never did. Whether I'm analysing economic trends for my research project or uncovering insights from sales and customer behaviour in my roles, I love finding patterns and turning them into something meaningful. I'm self-driven, building strong foundations in Python, SQL, Excel and Tableau, and constantly looking for new opportunities to deepen my experience and grow as an analyst.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="upload-section">
+            <button class="btn btn-secondary" id="loginBtn" style="margin-right: 1rem;">Login to Edit</button>
+            <button class="btn btn-secondary" id="logoutBtn" style="margin-right: 1rem; display: none;">🚪 Logout</button>
+            <button class="btn btn-primary" id="uploadBtn" style="display: none;">+ Add New Project</button>
+        </section>
+
+        <section class="filters">
+            <input type="text" id="searchInput" placeholder="Search projects..." class="search-input">
+            <select id="categoryFilter" class="filter-select">
+                <option value="">All Categories</option>
+                <option value="Data Analysis">Data Analysis</option>
+                <option value="Visualization">Visualization</option>
+                <option value="Machine Learning">Machine Learning</option>
+                <option value="Dashboard">Dashboard</option>
+                <option value="Research">Research</option>
+                <option value="General">General</option>
+            </select>
+        </section>
+
+        <section class="skills-section">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Visualisation</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Tableau</span>
+                        <span class="skill-item">Power BI</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Platforms</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">Excel</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <div class="projects-header">
+                <div>
+                    <h2>My Projects</h2>
+                    <p class="project-count" id="projectCount">No projects uploaded yet</p>
+                </div>
+            </div>
+
+            <section class="projects-grid" id="projectsGrid">
+                <!-- Projects will be loaded here -->
+            </section>
+
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <p>No projects found. Click "Add New Project" to get started!</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" id="closeLoginModal">&times;</span>
+            <h2>Login to Edit Projects</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="off">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelLoginBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Add New Project</h2>
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label for="title">Project Title *</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
+                        <option value="General">General</option>
+                        <option value="Data Analysis">Data Analysis</option>
+                        <option value="Visualization">Visualization</option>
+                        <option value="Machine Learning">Machine Learning</option>
+                        <option value="Dashboard">Dashboard</option>
+                        <option value="Research">Research</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Tags (comma-separated)</label>
+                    <input type="text" id="tags" name="tags" placeholder="e.g., Python, SQL, Tableau">
+                </div>
+
+                <div class="form-group">
+                    <label for="link">External Link (optional)</label>
+                    <input type="url" id="link" name="link" placeholder="https://...">
+                </div>
+
+                <div class="form-group">
+                    <label for="file">Upload File *</label>
+                    <input type="file" id="file" name="file" required>
+                    <small>Supported: Images, PDFs, Notebooks, Data files (max 200MB)</small>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Upload Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
